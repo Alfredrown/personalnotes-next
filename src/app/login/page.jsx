@@ -8,7 +8,6 @@ function Login({ onLoginSuccess }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     if (username === 'admin' && password === '1234') {
       setError('');
       onLoginSuccess();
@@ -21,12 +20,13 @@ return (
     <div style={{
         display: 'flex',
         justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
         height: '100vh',
         backgroundColor: '#212121FF'
     }}>
             <form onSubmit={handleSubmit} style={{ textAlign: 'center' }}
-            className="flex flex-col items-center justify-center p-6 rounded shadow-md display">
+            className="flex flex-col items-center justify-center p-6 bg-green-900 rounded shadow-md rounded-xl">
                 <input
                     type="text"
                     placeholder="Username"
