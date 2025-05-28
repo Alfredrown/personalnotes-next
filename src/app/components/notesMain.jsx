@@ -1,7 +1,7 @@
 import React from "react";
 import NotesList from "./notesList.jsx";
 import UserInput from "./userInput.jsx";
-import { supabase } from "@/lib/supabase";
+import { supabase } from "../../../lib/supabase";
 
 class NotesMain extends React.Component {
   constructor(props) {
@@ -81,27 +81,46 @@ class NotesMain extends React.Component {
 
   render() {
     const { notes, loading } = this.state;
-    if (loading) return <p>Loading...</p>;
+    if (loading)
+      return (
+        <div className="flex items-center justify-center min-h-screen bg-gray-100">
+          <p className="text-lg font-medium text-gray-700">Loading...</p>
+        </div>
+      );
 
     const activeNotes = notes.filter((note) => !note.archived);
     const archivedNotes = notes.filter((note) => note.archived);
 
     return (
-      <div className="notes-app">
-        <h1>Notes App</h1>
-        <UserInput addNotes={this.onAddNotesHandler} />
-        <h2>Your Notes</h2>
-        <NotesList
-          notes={activeNotes}
-          onDelete={this.onDeleteHandler}
-          onArchive={this.onArchiveHandler}
-        />
-        <h2>Archived Notes</h2>
-        <NotesList
-          notes={archivedNotes}
-          onDelete={this.onDeleteHandler}
-          onArchive={this.onArchiveHandler}
-        />
+      <div className="min-h-screen px-4 py-10 bg-gray-800">
+        <div className="max-w-3xl p-6 mx-auto bg-white shadow-md rounded-xl">
+          <h1 className="mb-6 text-3xl font-bold text-center text-green-700">
+            Notes App
+          </h1>
+          <UserInput addNotes={this.onAddNotesHandler} />
+
+          <div className="mt-8">
+            <h2 className="mb-2 text-xl font-semibold text-gray-800">
+              Your Notes
+            </h2>
+            <NotesList
+              notes={activeNotes}
+              onDelete={this.onDeleteHandler}
+              onArchive={this.onArchiveHandler}
+            />
+          </div>
+
+          <div className="mt-8">
+            <h2 className="mb-2 text-xl font-semibold text-gray-800">
+              Archived Notes
+            </h2>
+            <NotesList
+              notes={archivedNotes}
+              onDelete={this.onDeleteHandler}
+              onArchive={this.onArchiveHandler}
+            />
+          </div>
+        </div>
       </div>
     );
   }

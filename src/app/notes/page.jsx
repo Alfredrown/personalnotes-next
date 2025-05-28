@@ -1,6 +1,6 @@
 "use client";
-import notesMain from "@/components/notesMain";
+import NotesMain from "../components/notesMain";
 
 export default function NotesPage() {
-  return <notesMain />;
+  return <NotesMain />;
 }
