@@ -1,14 +1,9 @@
-// pages/index.js
+// app/page.js
+import { redirect } from "next/navigation";
 
-export async function getServerSideProps(context) {
-  return {
-    redirect: {
-      destination: "/login", // where to redirect
-      permanent: false, // temporary redirect (HTTP 307)
-    },
-  };
-}
+export default function HomePage() {
+  redirect("/login"); // immediately redirect to /login
 
-export default function Home() {
-  return null; // This page won't be rendered because of redirect
+  // This component won't render because of redirect
+  return null;
 }
